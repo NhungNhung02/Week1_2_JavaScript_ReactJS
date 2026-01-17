@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymnastics Challenge</title>
+</head>
+
+<body>
+    <h1>Gymnastics Teams Challenge</h1>
+    <div>
+        <h2>Dolphins Scores</h2>
+        <label for="dolphins1">Score 1:</label>
+        <input type="number" id="dolphins1" value="44"><br>
+        <label for="dolphins2">Score 2:</label>
+        <input type="number" id="dolphins2" value="23"><br>
+        <label for="dolphins3">Score 3:</label>
+        <input type="number" id="dolphins3" value="71"><br>
+    </div>
+    <div>
+        <h2>Koalas Scores</h2>
+        <label for="koalas1">Score 1:</label>
+        <input type="number" id="koalas1" value="65"><br>
+        <label for="koalas2">Score 2:</label>
+        <input type="number" id="koalas2" value="54"><br>
+        <label for="koalas3">Score 3:</label>
+        <input type="number" id="koalas3" value="49"><br>
+    </div>
+    <button onclick="loadData1()">Load Data 1</button>
+    <button onclick="loadData2()">Load Data 2</button>
+    <button onclick="checkWinner()">Check Winner</button>
+    <div id="result"></div>
+
+    <script>
+        // Arrow function to calculate average
+        const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
+
+        function loadData1() {
+            document.getElementById('dolphins1').value = 44;
+            document.getElementById('dolphins2').value = 23;
+            document.getElementById('dolphins3').value = 71;
+            document.getElementById('koalas1').value = 65;
+            document.getElementById('koalas2').value = 54;
+            document.getElementById('koalas3').value = 49;
+        }
+
+        function loadData2() {
+            document.getElementById('dolphins1').value = 85;
+            document.getElementById('dolphins2').value = 54;
+            document.getElementById('dolphins3').value = 41;
+            document.getElementById('koalas1').value = 23;
+            document.getElementById('koalas2').value = 34;
+            document.getElementById('koalas3').value = 27;
+        }
+
+        function checkWinner() {
+            const dolphins1 = parseFloat(document.getElementById('dolphins1').value);
+            const dolphins2 = parseFloat(document.getElementById('dolphins2').value);
+            const dolphins3 = parseFloat(document.getElementById('dolphins3').value);
+            const koalas1 = parseFloat(document.getElementById('koalas1').value);
+            const koalas2 = parseFloat(document.getElementById('koalas2').value);
+            const koalas3 = parseFloat(document.getElementById('koalas3').value);
+
+            if ([dolphins1, dolphins2, dolphins3, koalas1, koalas2, koalas3].some(isNaN)) {
+                document.getElementById('result').innerHTML = 'Please enter valid scores.';
+                return;
+            }
+
+            const avgDolphins = calcAverage(dolphins1, dolphins2, dolphins3);
+            const avgKoalas = calcAverage(koalas1, koalas2, koalas3);
+
+            // Function to check winner
+            const checkWinnerFunc = function (avgDolphins, avgKoalas) {
+                if (avgDolphins >= 2 * avgKoalas) {
+                    const message = `Dolphins win (${avgDolphins.toFixed(1)} vs. ${avgKoalas.toFixed(1)})`;
+                    console.log(message);
+                    return message;
+                } else if (avgKoalas >= 2 * avgDolphins) {
+                    const message = `Koalas win (${avgKoalas.toFixed(1)} vs. ${avgDolphins.toFixed(1)})`;
+                    console.log(message);
+                    return message;
+                } else {
+                    const message = 'No team wins!';
+                    console.log(message);
+                    return message;
+                }
+            };
+
+            const result = checkWinnerFunc(avgDolphins, avgKoalas);
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+</body>
+
+</html>
