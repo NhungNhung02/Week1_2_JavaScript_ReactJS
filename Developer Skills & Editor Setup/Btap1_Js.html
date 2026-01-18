@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Forecast</title>
+</head>
+
+<body>
+
+    <h1>Weather Forecast</h1>
+
+    <button onclick="runForecast1()">Run Forecast Data 1</button>
+    <button onclick="runForecast2()">Run Forecast Data 2</button>
+
+    <p id="output"></p>
+
+    <script>
+        // Function in nhiệt độ dự báo
+        function printForecast(arr) {
+            var result = "";
+
+            for (var i = 0; i < arr.length; i++) {
+                result = result + "... " + arr[i] + "ºC in " + (i + 1) + " days ";
+            }
+
+            return result + "...";
+        }
+
+        // Test data 1
+        function runForecast1() {
+            var data1 = [17, 21, 23];
+            var text = printForecast(data1);
+
+            console.log(text);
+            document.getElementById("output").innerHTML = text;
+        }
+
+        // Test data 2
+        function runForecast2() {
+            var data2 = [12, 5, -5, 0, 4];
+            var text = printForecast(data2);
+
+            console.log(text);
+            document.getElementById("output").innerHTML = text;
+        }
+    </script>
+
+</body>
+
+</html>
