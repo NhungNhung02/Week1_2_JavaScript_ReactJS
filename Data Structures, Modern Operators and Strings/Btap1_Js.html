@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Football Betting App</title>
+</head>
+
+<body>
+    <h1>Football Betting App</h1>
+    <p>Mở Console để xem kết quả</p>
+
+    <script>
+        'use strict';
+
+        const game = {
+            team1: 'Bayern Munich',
+            team2: 'Borrussia Dortmund',
+            players: [
+                [
+                    'Neuer',
+                    'Pavard',
+                    'Martinez',
+                    'Alaba',
+                    'Davies',
+                    'Kimmich',
+                    'Goretzka',
+                    'Coman',
+                    'Muller',
+                    'Gnabry',
+                    'Lewandowski',
+                ],
+                [
+                    'Burki',
+                    'Schulz',
+                    'Hummels',
+                    'Akanji',
+                    'Hakimi',
+                    'Weigl',
+                    'Witsel',
+                    'Hazard',
+                    'Brandt',
+                    'Sancho',
+                    'Gotze',
+                ],
+            ],
+            scored: ['Lewandowski', 'Gnabry', 'Lewandowski', 'Hummels'],
+            odds: {
+                team1: 1.33,
+                draw: 3.25,
+                team2: 6.5,
+            },
+        };
+
+        // 1. Tạo mảng cầu thủ 
+        const [players1, players2] = game.players;
+
+        // 2. Tách thủ môn và cầu thủ sân
+        const [gk, ...fieldPlayers] = players1;
+
+        // 3. Gộp tất cả cầu thủ
+        const allPlayers = [...players1, ...players2];
+
+        // 4. Thêm cầu thủ dự bị cho team 1
+        const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+
+        // 5. Lấy odds
+        const { team1, draw, team2 } = game.odds;
+
+        // 6. Function in cầu thủ ghi bàn
+        function printGoals(...players) {
+            console.log(`Total goals: ${players.length}`);
+            for (let i = 0; i < players.length; i++) {
+                console.log(players[i]);
+            }
+        }
+
+        printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+        printGoals(...game.scored);
+
+        // 7. Đội có khả năng thắng cao hơn
+        team1 < team2 && console.log('Bayern Munich is more likely to win');
+        team2 < team1 && console.log('Borrussia Dortmund is more likely to win');
+    </script>
+</body>
+
+</html>
