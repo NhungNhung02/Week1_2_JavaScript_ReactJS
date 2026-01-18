@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Convert to camelCase</title>
+</head>
+
+<body>
+    <h2>Convert underscore_case to camelCase</h2>
+
+    <textarea id="text" rows="8" cols="30">
+underscore_case
+first_name
+Some_Variable
+calculate_AGE
+delayed_departure
+  </textarea>
+    <br><br>
+
+    <button id="convert">Convert</button>
+
+    <script>
+        'use strict';
+
+        document.getElementById('convert').addEventListener('click', function () {
+            const text = document.getElementById('text').value;
+
+            // Tách từng dòng
+            const rows = text.split('\n');
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i].toLowerCase().trim();
+
+                // Tách 2 từ
+                const [first, second] = row.split('_');
+
+                // Chuyển sang camelCase
+                const camelCase =
+                    first + second[0].toUpperCase() + second.slice(1);
+
+                console.log(`${camelCase} ${'✅'.repeat(i + 1)}`);
+            }
+        });
+    </script>
+</body>
+
+</html>
