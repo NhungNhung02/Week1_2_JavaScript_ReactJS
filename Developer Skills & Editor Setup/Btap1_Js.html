@@ -1,47 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
-    <title>Weather Forecast</title>
+    <title>Dự báo nhiệt độ</title>
 </head>
 
 <body>
 
-    <h1>Weather Forecast</h1>
+    <h1>Dự báo nhiệt độ theo ngày</h1>
 
-    <button onclick="runForecast1()">Run Forecast Data 1</button>
-    <button onclick="runForecast2()">Run Forecast Data 2</button>
+    <!-- Nhập dữ liệu test -->
+    <input id="dataInput">
+    <button onclick="runCustomForecast()">Kiểm tra dữ liệu</button>
 
     <p id="output"></p>
 
     <script>
-        // Function in nhiệt độ dự báo
+        // Hàm in dự báo nhiệt độ
         function printForecast(arr) {
             var result = "";
 
             for (var i = 0; i < arr.length; i++) {
-                result = result + "... " + arr[i] + "ºC in " + (i + 1) + " days ";
+                result += "... " + arr[i] + "°C trong " + (i + 1) + " ngày ";
             }
 
             return result + "...";
         }
 
-        // Test data 1
-        function runForecast1() {
-            var data1 = [17, 21, 23];
-            var text = printForecast(data1);
+        // Hàm test dữ liệu nhập từ người dùng
+        function runCustomForecast() {
+            var input = document.getElementById("dataInput").value;
+            var arr = input.split(",").map(Number);
 
-            console.log(text);
-            document.getElementById("output").innerHTML = text;
-        }
-
-        // Test data 2
-        function runForecast2() {
-            var data2 = [12, 5, -5, 0, 4];
-            var text = printForecast(data2);
-
-            console.log(text);
+            var text = printForecast(arr);
             document.getElementById("output").innerHTML = text;
         }
     </script>
