@@ -7,6 +7,7 @@
 </head>
 
 <body>
+
     <h2>Convert underscore_case to camelCase</h2>
 
     <textarea id="text" rows="8" cols="30">
@@ -15,34 +16,37 @@ first_name
 Some_Variable
 calculate_AGE
 delayed_departure
-  </textarea>
-    <br><br>
+</textarea>
 
+    <br><br>
     <button id="convert">Convert</button>
 
     <script>
         'use strict';
 
-        document.getElementById('convert').addEventListener('click', function () {
+        document.getElementById('convert').onclick = function () {
+
             const text = document.getElementById('text').value;
+            const lines = text.split('\n');
 
-            // Tách từng dòng
-            const rows = text.split('\n');
+            for (let i = 0; i < lines.length; i++) {
 
-            for (let i = 0; i < rows.length; i++) {
-                const row = rows[i].toLowerCase().trim();
+                const line = lines[i].toLowerCase().trim();
 
-                // Tách 2 từ
-                const [first, second] = row.split('_');
+                if (line === '') continue;
 
-                // Chuyển sang camelCase
+                const words = line.split('_');
+
                 const camelCase =
-                    first + second[0].toUpperCase() + second.slice(1);
+                    words[0] +
+                    words[1].charAt(0).toUpperCase() +
+                    words[1].slice(1);
 
-                console.log(`${camelCase} ${'✅'.repeat(i + 1)}`);
+                console.log(camelCase + ' ' + '✅'.repeat(i + 1));
             }
-        });
+        };
     </script>
+
 </body>
 
 </html>
